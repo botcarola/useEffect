@@ -1,37 +1,30 @@
 import './App.scss';
-import Card from "./components/Card"
-import {useEffect, useState} from "react";
+import Home from "./components/Home";
+import Detalle from "./components/Detalle";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 const App = () => {
 
-   const [personajes, setPersonajes] = useState([]);
-
-   useEffect( () => {
-     fetch("https://rickandmortyapi.com/api/character")
-     .then(res => res.json())
-     .then(data => {
-       console.log(data)
-       setPersonajes(data.results)
-     })
-   }, [])
-
 
   return (
-    <div>
+    <>   
+    <BrowserRouter>
+    <nav>
+      <h1>RICK AND MORTY</h1>
+      <Link to="/">Home</Link>    
+    </nav>
 
-      <div className='container-cards'>
+    <Routes>
+      <Route path="/" element={<Home />}/>
+      <Route path="/vista-de-detalle/:id" element={<Detalle />}/>
+    </Routes>
 
-      {personajes.map( curr => <Card 
-      img={curr.image}
-      nombre={curr.name} 
-      especie={curr.species} 
-      estado={curr.status} 
-      genero={curr.gender} 
-      />)}
-      </div>
+    <footer>
+      <h2>Made by Carola</h2>
+    </footer>
+    </BrowserRouter>
           
-      
-    </div>
+    </>
   )
 }
 
