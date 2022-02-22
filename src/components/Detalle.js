@@ -12,7 +12,7 @@ const Detalle = () => {
       .then(data => {
         setPersonaje(data)
       })
-    }, []) 
+    }, [params.id]) 
 
     return (
         <>
