@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-
 const Detalle = () => {
 
     const params = useParams()
@@ -11,12 +10,15 @@ const Detalle = () => {
       fetch(`https://rickandmortyapi.com/api/character/${params.id}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        setPersonaje(data)
       })
-    }, [])
+    }, []) 
 
     return (
         <>
+            <h2>{personaje.name}</h2>
+            <h3>{personaje.status}</h3>
+            <h3>{personaje.gender}</h3>
         </>
     )
 }
